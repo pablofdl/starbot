@@ -17,7 +17,7 @@ const random_facts = [
     "Pablo loves cheese"
 ]
 
-const handler = (payload, res) => {
+const handler = (req, payload, res) => {
     const randomNumber = Math.floor(Math.random()*random_facts.length);
     let msg = _.defaults({
     channel: payload.channel_name,

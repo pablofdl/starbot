@@ -40,7 +40,7 @@ app.post('/commands/starbot', (req, res) => {
         return route.match(cmd.pattern) ? cmd : a
     }, helpCommand)
 
-    cmd.handler(payload, res)
+    cmd.handler(req, payload, res)
 })
 
 app.post('/commands/answer', (req, res) => {

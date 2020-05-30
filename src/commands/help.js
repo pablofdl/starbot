@@ -19,7 +19,7 @@ let attachments = [
   }
 ]
 
-const handler = (payload, res) => {
+const handler = (req, payload, res) => {
   let msg = _.defaults({
     channel: payload.channel_name,
     attachments: attachments

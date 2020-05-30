@@ -11,7 +11,7 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
-const handler = (payload, res) => {
+const handler = (req, payload, res) => {
     const message = {
         "response_type": 'in_channel',
         "text": "Welcome to the Grip game",
