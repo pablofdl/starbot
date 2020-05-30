@@ -46,41 +46,41 @@ const handler = (payload, res) => {
             }
         ]
     }
-
-    const postOptions = {
-        uri: payload.response_url,
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        json: message
-    }
-    request(postOptions, (error, response, body) => {
-        if (error){
-            console.log("Error:"+ error)
-            // handle errors as you see fit
-        }
-    })
-
-    const options = {
-        'method': 'POST',
-        'url': 'https://slack.com/api/files.remote.share',
-        'headers': {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        form: {
-            'token': 'xoxb-1178613160256-1140227414279-HiNX0tSNJ61jlcXmHTTt127B',
-            'channels': 'C0144105ZU7',
-            'external_id': 'video1'
-        }
-    };
-    request(options, function (error, response) {
-        console.log(response)
-        if (error){
-            console.log("Error:"+ error)
-            // handle errors as you see fit
-        }
-    });
+    // 
+    // const postOptions = {
+    //     uri: payload.response_url,
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-type': 'application/json'
+    //     },
+    //     json: message
+    // }
+    // request(postOptions, (error, response, body) => {
+    //     if (error){
+    //         console.log("Error:"+ error)
+    //         // handle errors as you see fit
+    //     }
+    // })
+    //
+    // const options = {
+    //     'method': 'POST',
+    //     'url': 'https://slack.com/api/files.remote.share',
+    //     'headers': {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //     },
+    //     form: {
+    //         'token': 'xoxb-1178613160256-1140227414279-HiNX0tSNJ61jlcXmHTTt127B',
+    //         'channels': 'C0144105ZU7',
+    //         'external_id': 'video1'
+    //     }
+    // };
+    // request(options, function (error, response) {
+    //     console.log(response)
+    //     if (error){
+    //         console.log("Error:"+ error)
+    //         // handle errors as you see fit
+    //     }
+    // });
 
     res.set("content-type", "application/json")
     res.status(200).json(message)

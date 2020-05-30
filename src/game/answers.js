@@ -32,7 +32,11 @@ const handler = (req, payload, res) => {
     }, msgDefaults)
 
     res.set("content-type", "application/json")
-    res.status(200).json(msg)
+    res.status(200).json({
+      "response_type": "in_channel",
+      "replace_original": false,
+      "text": "Correct answer. You have " + req.app.locals.scores[payload.channel.name].ducks + " ducks"
+    })
     return
 }
 
