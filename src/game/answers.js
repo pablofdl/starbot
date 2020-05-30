@@ -29,39 +29,45 @@ const send_next = function(payload) {
 }
 
 const handler = (req, payload, res) => {
-    if (req.app.locals.current_phase[payload.channel.name]) {
-        if (req.app.locals.scores[payload.channel.name]) {
-            req.app.locals.scores[payload.channel.name].ducks += req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks;
-        } else {
-            req.app.locals.scores[payload.channel.name] = {
-                "ducks": req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks
-            };
-        }
-        req.app.locals.current_phase[payload.channel.name] += 1;
-    } else {
+    if (!req.app.locals.current_phase[payload.channel.name]) {
         req.app.locals.current_phase[payload.channel.name] = 0;
     }
     console.log(req.app.locals.scores);
-    let msg = _.defaults({
-    channel: payload.channel.name,
-    attachments: [
-      {
-        title: "Correct answer. Score",
-        color: "#2FA44G",
-        text: req.app.locals.scores.toString(),
-        mrkdwn_in: ["text"]
-      }
-    ]
-    }, msgDefaults)
-
+    console.log(req.app.locals.current_phase[payload.channel.name]);
     res.set("content-type", "application/json")
-    res.status(200).json({
-      "response_type": "in_channel",
-      "replace_original": false,
-      "text": "Correct answer. You have " + req.app.locals.scores[payload.channel.name].ducks + " ducks"
-    })
+    if (req.app.locals.current_phase[payload.channel.name] === 0) {
+        res.status(200).json({
+          "response_type": "in_channel",
+          "replace_original": false,
+          "text": "Great answer!"
+        })
+        setTimeout(send_next, 1500, payload);
+    } else {
+        if (req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].answer === payload.actions[0].name) {
+            if (req.app.locals.scores[payload.channel.name]) {
+                req.app.locals.scores[payload.channel.name].ducks += req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks;
+            } else {
+                req.app.locals.scores[payload.channel.name] = {
+                    "ducks": req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks
+                };
+            }
+            req.app.locals.current_phase[payload.channel.name] += 1;
+            res.status(200).json({
+                "response_type": "in_channel",
+                "replace_original": false,
+                "text": "Correct answer. You have " + req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0 + " ducks"
+            })
+            setTimeout(send_next, 1500, payload);
+        } else {
+            res.status(200).json({
+                "response_type": "in_channel",
+                "replace_original": false,
+                "text": "Wrong Answer. Try again"
+            })
+        }
+    }
 
-    setTimeout(send_next, 1500, payload);
+
 
     return
 }
