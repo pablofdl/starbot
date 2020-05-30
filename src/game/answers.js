@@ -11,16 +11,16 @@ const msgDefaults = {
 }
 
 const handler = (req, payload, res) => {
-    if (req.app.locals.scores[payload.channel_name]) {
-        req.app.locals.scores[payload.channel_name].ducks += 1;
+    if (req.app.locals.scores[payload.channel.name]) {
+        req.app.locals.scores[payload.channel.name].ducks += 1;
     } else {
-        req.app.locals.scores[payload.channel_name] = {
+        req.app.locals.scores[payload.channel.name] = {
             "ducks": 1
         };
     }
     console.log(req.app.locals.scores);
     let msg = _.defaults({
-    channel: payload.channel_name,
+    channel: payload.channel.name,
     attachments: [
       {
         title: "Correct answer. Score",

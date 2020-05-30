@@ -55,7 +55,6 @@ const handler = (payload, res) => {
         },
         json: message
     }
-    console.log("pre mensaje")
     request(postOptions, (error, response, body) => {
         if (error){
             console.log("Error:"+ error)
@@ -76,6 +75,7 @@ const handler = (payload, res) => {
         }
     };
     request(options, function (error, response) {
+        console.log(response)
         if (error){
             console.log("Error:"+ error)
             // handle errors as you see fit
@@ -83,7 +83,7 @@ const handler = (payload, res) => {
     });
 
     res.set("content-type", "application/json")
-    res.status(200).json("")
+    res.status(200).json(message)
     return
 }
 
