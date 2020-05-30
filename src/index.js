@@ -43,7 +43,9 @@ app.post('/commands/starbot', (req, res) => {
 })
 
 app.post('/commands/answer', (req, res) => {
-    let payload = JSON.parse(req.body.payloaf)
+
+    console.log(req.body)
+    let payload = JSON.parse(req.body.payload)
     console.log(payload)
 
     answers.handler(req, payload, res)
