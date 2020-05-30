@@ -2,7 +2,7 @@
 'use strict'
 
 const _ = require('lodash')
-const reques = require('reques')
+const reques = require('request')
 const config = require('../config')
 
 const msgDefaults = {
