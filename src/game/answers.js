@@ -10,13 +10,36 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
+const send_next = function(payload) {
+    const postOptions = {
+        uri: payload.response_url,
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        json: req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].message;
+    }
+    request(postOptions, (error, response, body) => {
+        if (error){
+            console.log("Error:"+ error)
+            // handle errors as you see fit
+        }
+    })
+
+}
+
 const handler = (req, payload, res) => {
-    if (req.app.locals.scores[payload.channel.name]) {
-        req.app.locals.scores[payload.channel.name].ducks += 1;
+    if (req.app.locals.current_phase[payload.channel.name]) {
+        if (req.app.locals.scores[payload.channel.name]) {
+            req.app.locals.scores[payload.channel.name].ducks += req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks;
+        } else {
+            req.app.locals.scores[payload.channel.name] = {
+                "ducks": req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks
+            };
+        }
+        req.app.locals.current_phase[payload.channel.name] += 1;
     } else {
-        req.app.locals.scores[payload.channel.name] = {
-            "ducks": 1
-        };
+        req.app.locals.current_phase[payload.channel.name] = 0;
     }
     console.log(req.app.locals.scores);
     let msg = _.defaults({
@@ -37,6 +60,9 @@ const handler = (req, payload, res) => {
       "replace_original": false,
       "text": "Correct answer. You have " + req.app.locals.scores[payload.channel.name].ducks + " ducks"
     })
+
+    setTimeout(send_next, 1500, payload);
+
     return
 }
 

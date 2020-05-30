@@ -13,15 +13,39 @@ const msgDefaults = {
 
 const handler = (payload, res) => {
     const message = {
-        "text": "This is your first interactive message",
+        "text": "Welcome to the Grip game",
         "attachments": [
             {
-                "text": "Building buttons is easy right?",
+              "type": "input",
+              "block_id": "input123",
+              "label": {
+                "type": "plain_text",
+                "text": "Label of input"
+              },
+              "element": {
+                "type": "plain_text_input",
+                "action_id": "plain_input",
+                "placeholder": {
+                  "type": "plain_text",
+                  "text": "Enter some plain text"
+                }
+              }
+            },
+            {
+                "text": "The ducks have been kidnapped.\n blablabla\n You will have to travel around the world to recover ducks from grippers \n Are you ready for the challenge?",
                 "fallback": "Shame... buttons aren't supported in this land",
                 "callback_id": "button_tutorial",
                 "color": "#3AA3E3",
                 "attachment_type": "default",
                 "image_url": "http://i.imgur.com/OJkaVOI.jpg?1",
+                "element": {
+                  "type": "plain_text_input",
+                  "action_id": "plain_input2",
+                  "placeholder": {
+                    "type": "plain_text",
+                    "text": "Enter some plain text"
+                  }
+                },
                 "actions": [
                     {
                         "name": "yes",
@@ -30,23 +54,16 @@ const handler = (payload, res) => {
                         "value": "yes"
                     },
                     {
-                        "name": "no",
-                        "text": "no",
+                        "name": "yes",
+                        "text": "yes",
                         "type": "button",
-                        "value": "no"
-                    },
-                    {
-                        "name": "maybe",
-                        "text": "maybe",
-                        "type": "button",
-                        "value": "maybe",
-                        "style": "danger"
+                        "value": "yes"
                     }
                 ]
             }
         ]
     }
-    // 
+    //
     // const postOptions = {
     //     uri: payload.response_url,
     //     method: 'POST',
