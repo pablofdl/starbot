@@ -18,6 +18,7 @@ const handler = (req, payload, res) => {
             "ducks": 1
         };
     }
+    console.log(req.app.locals.scores);
     let msg = _.defaults({
     channel: payload.channel_name,
     attachments: [

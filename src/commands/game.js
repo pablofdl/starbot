@@ -16,34 +16,6 @@ const handler = (payload, res) => {
         "text": "This is your first interactive message",
         "attachments": [
             {
-                "title": "The Further Adventures of Slackbot",
-                "fields": [
-                    {
-                        "title": "Volume",
-                        "value": "1",
-                        "short": true
-                    },
-                    {
-                        "title": "Issue",
-                        "value": "3",
-                "short": true
-                    }
-                ],
-                "author_name": "Stanford S. Strickland",
-                "author_icon": "http://a.slack-edge.com/7f18https://a.slack-edge.com/80588/img/api/homepage_custom_integrations-2x.png",
-                "image_url": "http://i.imgur.com/OJkaVOI.jpg?1"
-            },
-              {
-              "type": "file",
-              "external_id": "audio1",
-              "source": "remote",
-            },
-              {
-              "type": "file",
-              "external_id": "video1",
-              "source": "remote",
-            },
-            {
                 "text": "Building buttons is easy right?",
                 "fallback": "Shame... buttons aren't supported in this land",
                 "callback_id": "button_tutorial",
@@ -90,6 +62,26 @@ const handler = (payload, res) => {
             // handle errors as you see fit
         }
     })
+
+    var request = require('request');
+    var options = {
+        'method': 'POST',
+        'url': 'https://slack.com/api/files.remote.share',
+        'headers': {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+            'token': 'xoxb-1178613160256-1140227414279-HiNX0tSNJ61jlcXmHTTt127B',
+            'channels': 'C0144105ZU7',
+            'external_id': 'video1'
+        }
+    };
+    request(options, function (error, response) {
+        if (error){
+            console.log("Error:"+ error)
+            // handle errors as you see fit
+        }
+    });
 
     res.set("content-type", "application/json")
     res.status(200).json("")
