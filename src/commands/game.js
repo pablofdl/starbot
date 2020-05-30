@@ -34,12 +34,6 @@ const handler = (payload, res) => {
                 "image_url": "http://i.imgur.com/OJkaVOI.jpg?1"
             },
               {
-                title: "Random Fact",
-                color: "#2FA44G",
-                text: "https://www.youtube.com/watch?v=Bb4ackoZfdA",
-                mrkdwn_in: ["text"]
-              },
-              {
               "type": "file",
               "external_id": "audio1",
               "source": "remote",
@@ -89,6 +83,7 @@ const handler = (payload, res) => {
         },
         json: message
     }
+    console.log("pre mensaje")
     request(postOptions, (error, response, body) => {
         if (error){
             console.log("Error:"+ error)
@@ -97,7 +92,7 @@ const handler = (payload, res) => {
     })
 
     res.set("content-type", "application/json")
-    res.status(200)
+    res.status(200).json("")
     return
 }
 
