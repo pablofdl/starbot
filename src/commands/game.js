@@ -10,18 +10,12 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
-const random_facts = [
-    "Grip was founded in Denmark",
-    "James hates cheese",
-    "Pablo loves cheese"
-]
-
 const handler = (payload, res) => {
     const randomNumber = Math.floor(Math.random()*random_facts.length);
     let msg = _.defaults({
     channel: payload.channel_name,
     attachments: [{
-            "text": "Would you like to play a game?",
+            "text": "Would you like to play a game??",
             "attachments": [
                 {
                     "text": "Choose a game to play",

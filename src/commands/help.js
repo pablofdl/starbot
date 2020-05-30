@@ -14,7 +14,7 @@ let attachments = [
   {
     title: "Test Message",
     color: "#2FA44F",
-    text: "`/gripquiztest random_fact` returns a random fact \n`/gripquiztest  javascript` returns hip JavaScript repos",
+    text: "`/gripquiztest random_fact` returns a random fact \n`/gripquiztest game` Play the gripper's game",
     mrkdwn_in: ["text"]
   }
 ]
