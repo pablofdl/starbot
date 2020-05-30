@@ -46,9 +46,11 @@ const handler = (req, payload, res) => {
         })
         setTimeout(send_next, 1500, req, payload);
     } else if (typeof req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]] !== "undefined") {
-        var user_answer = payload.text.split(" ")[1];
+        var user_answer = "";
         if (payload.actions) {
             user_answer = payload.actions[0].name;
+        } else if (typeof payload.text !== "undefined") {
+            user_answer = payload.text.split(" ")[1];
         }
         if (req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].answer === payload.actions[0].name) {
             if (req.app.locals.scores[payload.channel.name]) {
