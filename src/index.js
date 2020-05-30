@@ -36,7 +36,10 @@ app.post('/commands/starbot', (req, res) => {
     }
     const route = payload.text.split(" ")[0]
 
+    console.log(route)
+
     let cmd = _.reduce(commands, (a, cmd) => {
+        console.log(cmd.pattern)
         return route.match(cmd.pattern) ? cmd : a
     }, helpCommand)
 
