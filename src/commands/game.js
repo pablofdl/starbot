@@ -3,7 +3,6 @@
 
 const _ = require('lodash')
 const config = require('../config')
-const trending = require('github-trending')
 
 const msgDefaults = {
   response_type: 'in_channel',
@@ -11,28 +10,61 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
+const random_facts = [
+    "Grip was founded in Denmark",
+    "James hates cheese",
+    "Pablo loves cheese"
+]
+
 const handler = (payload, res) => {
-  trending('javascript', (err, repos) => {
-    if (err) throw err
-
-    var attachments = repos.slice(0, 5).map((repo) => {
-      return {
-        title: `${repo.owner}/${repo.title} `,
-        title_link: repo.url,
-        text: `_${repo.description}_\n${repo.language} • ${repo.star}>`,
-        mrkdwn_in: ['text', 'pretext']
-      }
-    })
-
+    const randomNumber = Math.floor(Math.random()*random_facts.length);
     let msg = _.defaults({
-      channel: payload.channel_name,
-      attachments: attachments
+    channel: payload.channel_name,
+    attachments: [{
+            "text": "Would you like to play a game?",
+            "attachments": [
+                {
+                    "text": "Choose a game to play",
+                    "fallback": "You are unable to choose a game",
+                    "callback_id": "wopr_game",
+                    "color": "#3AA3E3",
+                    "attachment_type": "default",
+                    "actions": [
+                        {
+                            "name": "game",
+                            "text": "Chess",
+                            "type": "button",
+                            "value": "chess"
+                        },
+                        {
+                            "name": "game",
+                            "text": "Falken's Maze",
+                            "type": "button",
+                            "value": "maze"
+                        },
+                        {
+                            "name": "game",
+                            "text": "Thermonuclear War",
+                            "style": "danger",
+                            "type": "button",
+                            "value": "war",
+                            "confirm": {
+                                "title": "Are you sure?",
+                                "text": "Wouldn't you prefer a good game of chess?",
+                                "ok_text": "Yes",
+                                "dismiss_text": "No"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
     }, msgDefaults)
 
-    res.set('content-type', 'application/json')
+    res.set("content-type", "application/json")
     res.status(200).json(msg)
     return
-  })
 }
 
-module.exports = { pattern: /repos/ig, handler: handler }
+module.exports = { pattern: /random_fact/ig, handler: handler }
