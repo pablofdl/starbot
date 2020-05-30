@@ -10,7 +10,7 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
-const handler = (payload, res) => {
+const handler = (req, payload, res) => {
     if (req.app.locals.scores[payload.channel_name]) {
         req.app.locals.scores[payload.channel_name].ducks += 1;
     } else {

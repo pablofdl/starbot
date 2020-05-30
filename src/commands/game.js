@@ -21,6 +21,7 @@ const handler = (payload, res) => {
                 "callback_id": "button_tutorial",
                 "color": "#3AA3E3",
                 "attachment_type": "default",
+                "image_url": "http://i.imgur.com/OJkaVOI.jpg?1"
                 "actions": [
                     {
                         "name": "yes",

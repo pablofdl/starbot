@@ -46,7 +46,7 @@ app.post('/commands/answer', (req, res) => {
     let payload = req.body
     console.log(payload)
 
-    answers.handler(payload, res)
+    answers.handler(req, payload, res)
     return
 })
 
