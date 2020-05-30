@@ -52,12 +52,21 @@ app.post('/commands/answer', (req, res) => {
     return
 })
 
+app.post('/restart/channel', (req, res) => {
+
+    let payload = req.body
+    app.locals.current_phase[payload.channel] = 0;
+
+    answers.handler(req, payload, res)
+    return
+})
+
 
 app.listen(config('PORT'), (err) => {
     if (err) throw err
 
     app.locals.scores = {};
-    req.app.locals.current_phase = {};
+    app.locals.current_phase = {};
     app.locals.phases = [
         {
             "message": {
