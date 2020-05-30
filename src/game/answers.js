@@ -11,7 +11,7 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
-const send_next = function(payload) {
+const send_next = function(req, payload) {
     const postOptions = {
         uri: payload.response_url,
         method: 'POST',
@@ -42,7 +42,7 @@ const handler = (req, payload, res) => {
           "replace_original": false,
           "text": "Great answer!"
         })
-        setTimeout(send_next, 1500, payload);
+        setTimeout(send_next, 1500, req, payload);
     } else {
         if (req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].answer === payload.actions[0].name) {
             if (req.app.locals.scores[payload.channel.name]) {
@@ -58,7 +58,7 @@ const handler = (req, payload, res) => {
                 "replace_original": false,
                 "text": "Correct answer. You have " + req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0 + " ducks"
             })
-            setTimeout(send_next, 1500, payload);
+            setTimeout(send_next, 1500, req, payload);
         } else {
             res.status(200).json({
                 "response_type": "in_channel",
