@@ -50,10 +50,11 @@ app.post('/commands/answer', (req, res) => {
     return
 })
 
-const SCORES = {}
 
 app.listen(config('PORT'), (err) => {
     if (err) throw err
+
+    app.locals.scores = {};
 
     console.log(`\n🚀  Starbot LIVES on PORT ${config('PORT')} 🚀`)
 

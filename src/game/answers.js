@@ -11,10 +11,10 @@ const msgDefaults = {
 }
 
 const handler = (payload, res) => {
-    if (SCORES[payload.channel_name]) {
-        SCORES[payload.channel_name].ducks += 1;
+    if (req.app.locals.scores[payload.channel_name]) {
+        req.app.locals.scores[payload.channel_name].ducks += 1;
     } else {
-        SCORES[payload.channel_name] = {
+        req.app.locals.scores[payload.channel_name] = {
             "ducks": 1
         };
     }
@@ -24,7 +24,7 @@ const handler = (payload, res) => {
       {
         title: "Correct answer. Score",
         color: "#2FA44G",
-        text: SCORES.toString(),
+        text: req.app.locals.scores.toString(),
         mrkdwn_in: ["text"]
       }
     ]
