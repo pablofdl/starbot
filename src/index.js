@@ -75,7 +75,7 @@ app.listen(config('PORT'), (err) => {
                     {
                         "text": "You will have to travel to Pablo's hometown. Where are you going?",
                         "fallback": "Shame... buttons aren't supported in this land",
-                        "callback_id": "button_tutorial",
+                        "callback_id": "beginnings",
                         "color": "#3AA3E3",
                         "attachment_type": "default",
                         "image_url": "http://i.imgur.com/OJkaVOI.jpg?1",
@@ -106,10 +106,10 @@ app.listen(config('PORT'), (err) => {
                     {
                         "text": "You will have to travel to Pablo's hometown. Where are you going?",
                         "fallback": "Shame... buttons aren't supported in this land",
-                        "callback_id": "button_tutorial",
+                        "callback_id": "pablo_1",
                         "color": "#3AA3E3",
                         "attachment_type": "default",
-                        "image_url": "http://i.imgur.com/OJkaVOI.jpg?1",
+                        "image_url": "https://media.istockphoto.com/photos/yellow-rubber-duck-for-bath-time-picture-id185590965?k=6&m=185590965&s=612x612&w=0&h=8yL484l9GrTAmJXoCzeBwdow3ccOasut4G_AoOkPVoc=",
                         "actions": [
                             {
                                 "name": "A Coruña",

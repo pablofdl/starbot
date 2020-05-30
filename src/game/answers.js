@@ -12,24 +12,25 @@ const msgDefaults = {
 }
 
 const send_next = function(req, payload) {
-    var message = req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].message;
-    message.replace_original = false;
-    message.response_type = "in_channel";
-    const postOptions = {
-        uri: payload.response_url,
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        json: message
-    }
-    request(postOptions, (error, response, body) => {
-        if (error){
-            console.log("Error:"+ error)
-            // handle errors as you see fit
+    if (typeof req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]] !== "undefined") {
+        var message = req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].message;
+        message.replace_original = false;
+        message.response_type = "in_channel";
+        const postOptions = {
+            uri: payload.response_url,
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            json: message
         }
-    })
-
+        request(postOptions, (error, response, body) => {
+            if (error){
+                console.log("Error:"+ error)
+                // handle errors as you see fit
+            }
+        })
+    }
 }
 
 const handler = (req, payload, res) => {
