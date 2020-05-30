@@ -13,6 +13,7 @@ const msgDefaults = {
 
 const handler = (payload, res) => {
     const message = {
+        "response_type": 'in_channel',
         "text": "Welcome to the Grip game",
         "attachments": [
             {

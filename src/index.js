@@ -101,7 +101,7 @@ app.listen(config('PORT'), (err) => {
         },
         {
             "message": {
-                "text": "You have Found PAblo",
+                "text": "You have Found Pablo",
                 "attachments": [
                     {
                         "text": "You will have to travel to Pablo's hometown. Where are you going?",
