@@ -47,7 +47,7 @@ const handler = (payload, res) => {
         ]
     }
 
-    var postOptions = {
+    const postOptions = {
         uri: payload.response_url,
         method: 'POST',
         headers: {
@@ -63,8 +63,7 @@ const handler = (payload, res) => {
         }
     })
 
-    var request = require('request');
-    var options = {
+    const options = {
         'method': 'POST',
         'url': 'https://slack.com/api/files.remote.share',
         'headers': {
