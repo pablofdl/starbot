@@ -17,7 +17,7 @@ const send_next = function(payload) {
         headers: {
             'Content-type': 'application/json'
         },
-        json: req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].message;
+        json: req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].message
     }
     request(postOptions, (error, response, body) => {
         if (error){
