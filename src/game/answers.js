@@ -12,13 +12,16 @@ const msgDefaults = {
 }
 
 const send_next = function(req, payload) {
+    var message = req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].message;
+    message.replace_original = false;
+    message.response_type = "in_channel";
     const postOptions = {
         uri: payload.response_url,
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
-        json: req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].message
+        json: message
     }
     request(postOptions, (error, response, body) => {
         if (error){
@@ -30,13 +33,11 @@ const send_next = function(req, payload) {
 }
 
 const handler = (req, payload, res) => {
-    if (!req.app.locals.current_phase[payload.channel.name]) {
-        req.app.locals.current_phase[payload.channel.name] = 0;
-    }
     console.log(req.app.locals.scores);
     console.log(req.app.locals.current_phase[payload.channel.name]);
     res.set("content-type", "application/json")
-    if (req.app.locals.current_phase[payload.channel.name] === 0) {
+    if (!req.app.locals.current_phase[payload.channel.name]) {
+        req.app.locals.current_phase[payload.channel.name] = 0;
         res.status(200).json({
           "response_type": "in_channel",
           "replace_original": false,
