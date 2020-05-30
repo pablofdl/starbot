@@ -45,7 +45,7 @@ const handler = (req, payload, res) => {
           "text": "Great answer!"
         })
         setTimeout(send_next, 1500, req, payload);
-    } else {
+    } else if (typeof req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]] !== "undefined") {
         if (req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].answer === payload.actions[0].name) {
             if (req.app.locals.scores[payload.channel.name]) {
                 req.app.locals.scores[payload.channel.name].ducks += req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].ducks;
@@ -68,6 +68,12 @@ const handler = (req, payload, res) => {
                 "text": "Wrong Answer. Try again"
             })
         }
+    } else {
+        res.status(200).json({
+            "response_type": "in_channel",
+            "replace_original": false,
+            "text": "You have finished the game. You have " + req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0 + " ducks"
+        })
     }
 
 

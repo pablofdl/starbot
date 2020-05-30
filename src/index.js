@@ -78,7 +78,7 @@ app.listen(config('PORT'), (err) => {
                         "callback_id": "beginnings",
                         "color": "#3AA3E3",
                         "attachment_type": "default",
-                        "image_url": "http://i.imgur.com/OJkaVOI.jpg?1",
+                        "image_url": "https://media.istockphoto.com/photos/yellow-rubber-duck-for-bath-time-picture-id185590965?k=6&m=185590965&s=612x612&w=0&h=8yL484l9GrTAmJXoCzeBwdow3ccOasut4G_AoOkPVoc=",
                         "actions": [
                             {
                                 "name": "A Coruña",
@@ -109,7 +109,7 @@ app.listen(config('PORT'), (err) => {
                         "callback_id": "pablo_1",
                         "color": "#3AA3E3",
                         "attachment_type": "default",
-                        "image_url": "https://media.istockphoto.com/photos/yellow-rubber-duck-for-bath-time-picture-id185590965?k=6&m=185590965&s=612x612&w=0&h=8yL484l9GrTAmJXoCzeBwdow3ccOasut4G_AoOkPVoc=",
+                        "image_url": "https://viaturi.com/wp-content/uploads/2016/11/A-Coruna-bonita-y-hermosa.jpg",
                         "actions": [
                             {
                                 "name": "A Coruña",
@@ -128,7 +128,7 @@ app.listen(config('PORT'), (err) => {
                 ]
             },
             "answer": "A Coruña",
-            "ducks": 0
+            "ducks": 1
         }
     ];
 
