@@ -11,49 +11,54 @@ const msgDefaults = {
 }
 
 const handler = (payload, res) => {
-    let msg = _.defaults({
-    channel: payload.channel_name,
-    attachments: [{
-            "text": "Would you like to play a game??",
-            "attachments": [
-                {
-                    "text": "Choose a game to play",
-                    "fallback": "You are unable to choose a game",
-                    "callback_id": "wopr_game",
-                    "color": "#3AA3E3",
-                    "attachment_type": "default",
-                    "actions": [
-                        {
-                            "name": "game",
-                            "text": "Chess",
-                            "type": "button",
-                            "value": "chess"
-                        },
-                        {
-                            "name": "game",
-                            "text": "Falken's Maze",
-                            "type": "button",
-                            "value": "maze"
-                        },
-                        {
-                            "name": "game",
-                            "text": "Thermonuclear War",
-                            "style": "danger",
-                            "type": "button",
-                            "value": "war",
-                            "confirm": {
-                                "title": "Are you sure?",
-                                "text": "Wouldn't you prefer a good game of chess?",
-                                "ok_text": "Yes",
-                                "dismiss_text": "No"
-                            }
-                        }
-                    ]
-                }
-            ]
+    const message = {
+        "text": "This is your first interactive message",
+        "attachments": [
+            {
+                "text": "Building buttons is easy right?",
+                "fallback": "Shame... buttons aren't supported in this land",
+                "callback_id": "button_tutorial",
+                "color": "#3AA3E3",
+                "attachment_type": "default",
+                "actions": [
+                    {
+                        "name": "yes",
+                        "text": "yes",
+                        "type": "button",
+                        "value": "yes"
+                    },
+                    {
+                        "name": "no",
+                        "text": "no",
+                        "type": "button",
+                        "value": "no"
+                    },
+                    {
+                        "name": "maybe",
+                        "text": "maybe",
+                        "type": "button",
+                        "value": "maybe",
+                        "style": "danger"
+                    }
+                ]
+            }
+        ]
+    }
+
+    var postOptions = {
+        uri: payload.response_url,
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        json: message
+    }
+    request(postOptions, (error, response, body) => {
+        if (error){
+            console.log("Error:"+ error)
+            // handle errors as you see fit
         }
-    ]
-    }, msgDefaults)
+    })
 
     res.set("content-type", "application/json")
     res.status(200).json(msg)
