@@ -56,7 +56,7 @@ const handler = (req, payload, res) => {
         } else if (typeof payload.text !== "undefined") {
             user_answer = payload.text.split(" ")[1];
         }
-        if (req.app.locals.phases[req.app.locals.current_phase[channel_name]].answer === payload.actions[0].name) {
+        if (req.app.locals.phases[req.app.locals.current_phase[channel_name]].answer === user_answer) {
             if (req.app.locals.scores[channel_name]) {
                 req.app.locals.scores[channel_name].ducks += req.app.locals.phases[req.app.locals.current_phase[channel_name]].ducks;
             } else {
