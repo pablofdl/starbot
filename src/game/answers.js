@@ -36,7 +36,7 @@ const handler = (req, payload, res) => {
     console.log(req.app.locals.scores);
     console.log(req.app.locals.current_phase[payload.channel.name]);
     res.set("content-type", "application/json")
-    if (!req.app.locals.current_phase[payload.channel.name]) {
+    if (typeof req.app.locals.current_phase[payload.channel.name] === "undefined") {
         req.app.locals.current_phase[payload.channel.name] = 0;
         res.status(200).json({
           "response_type": "in_channel",

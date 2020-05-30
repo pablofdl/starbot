@@ -21,6 +21,8 @@ const handler = (payload, res) => {
     const randomNumber = Math.floor(Math.random()*random_facts.length);
     let msg = _.defaults({
     channel: payload.channel_name,
+    username: 'New Name',
+    as_user: true,
     attachments: [
       {
         title: "Random Fact",
