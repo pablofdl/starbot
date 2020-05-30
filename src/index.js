@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const _ = require('lodash')
 const config = require('./config')
 const commands = require('./commands')
-const answers = require('./game/answers')
+const answers = require('./commands/answers')
 const helpCommand = require('./commands/help')
 
 let bot = require('./bot')
@@ -36,10 +36,7 @@ app.post('/commands/starbot', (req, res) => {
     }
     const route = payload.text.split(" ")[0]
 
-    console.log(route)
-
     let cmd = _.reduce(commands, (a, cmd) => {
-        console.log(cmd.pattern)
         return route.match(cmd.pattern) ? cmd : a
     }, helpCommand)
 
