@@ -39,6 +39,16 @@ const handler = (payload, res) => {
                 text: "https://www.youtube.com/watch?v=Bb4ackoZfdA",
                 mrkdwn_in: ["text"]
               },
+              {
+              "type": "file",
+              "external_id": "audio1",
+              "source": "remote",
+            },
+              {
+              "type": "file",
+              "external_id": "video1",
+              "source": "remote",
+            },
             {
                 "text": "Building buttons is easy right?",
                 "fallback": "Shame... buttons aren't supported in this land",
@@ -87,7 +97,7 @@ const handler = (payload, res) => {
     })
 
     res.set("content-type", "application/json")
-    res.status(200).json("Ok")
+    res.status(200)
     return
 }
 

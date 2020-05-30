@@ -24,7 +24,7 @@ const handler = (payload, res) => {
       {
         title: "Random Fact",
         color: "#2FA44G",
-        text: "Did you know that " + random_facts[randomNumber] + "?",
+        text: "Did you know that " + random_facts[randomNumber] + "? https://www.youtube.com/watch?v=Bb4ackoZfdA",
         mrkdwn_in: ["text"]
       }
     ]
