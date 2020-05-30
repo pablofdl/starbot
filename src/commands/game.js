@@ -11,7 +11,6 @@ const msgDefaults = {
 }
 
 const handler = (payload, res) => {
-    const randomNumber = Math.floor(Math.random()*random_facts.length);
     let msg = _.defaults({
     channel: payload.channel_name,
     attachments: [{
