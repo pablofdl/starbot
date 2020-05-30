@@ -58,7 +58,7 @@ const handler = (req, payload, res) => {
             res.status(200).json({
                 "response_type": "in_channel",
                 "replace_original": false,
-                "text": "Correct answer. You have " + req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0 + " ducks"
+                "text": "Correct answer. You have " + (req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0) + " ducks"
             })
             setTimeout(send_next, 1500, req, payload);
         } else {
@@ -72,7 +72,7 @@ const handler = (req, payload, res) => {
         res.status(200).json({
             "response_type": "in_channel",
             "replace_original": false,
-            "text": "You have finished the game. You have " + req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0 + " ducks"
+            "text": "You have finished the game. You have " + (req.app.locals.scores[payload.channel.name].ducks?req.app.locals.scores[payload.channel.name].ducks:0) + " ducks"
         })
     }
 

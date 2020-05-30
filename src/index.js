@@ -104,7 +104,7 @@ app.listen(config('PORT'), (err) => {
                 "text": "You have Found Pablo",
                 "attachments": [
                     {
-                        "text": "You will have to travel to Pablo's hometown. Where are you going?",
+                        "text": "You have to answer the question. Is the city by the sea?",
                         "fallback": "Shame... buttons aren't supported in this land",
                         "callback_id": "pablo_1",
                         "color": "#3AA3E3",
@@ -112,16 +112,16 @@ app.listen(config('PORT'), (err) => {
                         "image_url": "https://viaturi.com/wp-content/uploads/2016/11/A-Coruna-bonita-y-hermosa.jpg",
                         "actions": [
                             {
-                                "name": "A Coruña",
-                                "text": "A Coruña",
+                                "name": "Yes",
+                                "text": "Yes",
                                 "type": "button",
-                                "value": "A Coruña"
+                                "value": "Yes"
                             },
                             {
-                                "name": "Some other place",
-                                "text": "Some other place",
+                                "name": "No",
+                                "text": "No",
                                 "type": "button",
-                                "value": "Some other place"
+                                "value": "No"
                             }
                         ]
                     }
