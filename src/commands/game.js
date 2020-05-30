@@ -16,12 +16,36 @@ const handler = (payload, res) => {
         "text": "This is your first interactive message",
         "attachments": [
             {
+                "title": "The Further Adventures of Slackbot",
+                "fields": [
+                    {
+                        "title": "Volume",
+                        "value": "1",
+                        "short": true
+                    },
+                    {
+                        "title": "Issue",
+                        "value": "3",
+                "short": true
+                    }
+                ],
+                "author_name": "Stanford S. Strickland",
+                "author_icon": "http://a.slack-edge.com/7f18https://a.slack-edge.com/80588/img/api/homepage_custom_integrations-2x.png",
+                "image_url": "http://i.imgur.com/OJkaVOI.jpg?1"
+            },
+              {
+                title: "Random Fact",
+                color: "#2FA44G",
+                text: "https://www.youtube.com/watch?v=Bb4ackoZfdA",
+                mrkdwn_in: ["text"]
+              },
+            {
                 "text": "Building buttons is easy right?",
                 "fallback": "Shame... buttons aren't supported in this land",
                 "callback_id": "button_tutorial",
                 "color": "#3AA3E3",
                 "attachment_type": "default",
-                "image_url": "http://i.imgur.com/OJkaVOI.jpg?1"
+                "image_url": "http://i.imgur.com/OJkaVOI.jpg?1",
                 "actions": [
                     {
                         "name": "yes",
