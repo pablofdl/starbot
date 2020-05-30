@@ -34,9 +34,10 @@ app.post('/commands/starbot', (req, res) => {
         res.status(401).end(err)
         return
     }
+    const route = payload.text.split(" ")[0]
 
     let cmd = _.reduce(commands, (a, cmd) => {
-        return payload.text.match(cmd.pattern) ? cmd : a
+        return route.match(cmd.pattern) ? cmd : a
     }, helpCommand)
 
     cmd.handler(payload, res)
@@ -127,7 +128,24 @@ app.listen(config('PORT'), (err) => {
                     }
                 ]
             },
-            "answer": "A Coruña",
+            "answer": "Yes",
+            "ducks": 1
+        },
+        {
+            "message": {
+                "text": "Test with text",
+                "attachments": [
+                    {
+                        "text": "With one word, what's in the image? Answer with /game answer 'your answer'",
+                        "fallback": "Shame... buttons aren't supported in this land",
+                        "callback_id": "pablo_2",
+                        "color": "#3AA3E3",
+                        "attachment_type": "default",
+                        "image_url": "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg",
+                    }
+                ]
+            },
+            "answer": "Butterfly",
             "ducks": 1
         }
     ];
