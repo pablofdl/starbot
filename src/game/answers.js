@@ -18,7 +18,7 @@ const send_next = function(req, payload) {
         headers: {
             'Content-type': 'application/json'
         },
-        json: req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].message
+        json: req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].message
     }
     request(postOptions, (error, response, body) => {
         if (error){
@@ -44,12 +44,12 @@ const handler = (req, payload, res) => {
         })
         setTimeout(send_next, 1500, req, payload);
     } else {
-        if (req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].answer === payload.actions[0].name) {
+        if (req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].answer === payload.actions[0].name) {
             if (req.app.locals.scores[payload.channel.name]) {
-                req.app.locals.scores[payload.channel.name].ducks += req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks;
+                req.app.locals.scores[payload.channel.name].ducks += req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].ducks;
             } else {
                 req.app.locals.scores[payload.channel.name] = {
-                    "ducks": req.app.locals.phase[req.app.locals.current_phase[payload.channel.name]].ducks
+                    "ducks": req.app.locals.phases[req.app.locals.current_phase[payload.channel.name]].ducks
                 };
             }
             req.app.locals.current_phase[payload.channel.name] += 1;
