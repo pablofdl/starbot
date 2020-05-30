@@ -67,4 +67,4 @@ const handler = (payload, res) => {
     return
 }
 
-module.exports = { pattern: /random_fact/ig, handler: handler }
+module.exports = { pattern: /game/ig, handler: handler }
